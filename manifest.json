@@ -1,10 +1,10 @@
 {
-  "name": "F360",
-  "short_name": "F360",
+  "name": "Apps Grupo DV",
+  "short_name": "AppsDV",
   "start_url": "index.html",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#000000",
+  "theme_color": "#0b1e39",
+  "background_color": "#ffffff",
   "icons": [
     {
       "src": "icon-192.png",
