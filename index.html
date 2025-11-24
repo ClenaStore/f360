@@ -2,91 +2,49 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
+
+<title>F360 PWA</title>
+
+<!-- CONFIGURAÇÕES DE PWA -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-
-<title>Apps • Grupo DV</title>
-
-<!-- PWA CONFIG -->
-<link rel="manifest" href="manifest.json">
 <meta name="theme-color" content="#0b1e39">
+
+<!-- ESSENCIAIS PARA TIRAR BARRA NO IPHONE -->
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
+<link rel="manifest" href="manifest.json">
+
 <style>
   body {
     margin:0;
-    padding:20px;
-    background:#f4f6f9;
-    font-family: 'Arial';
-  }
-
-  h1 {
-    text-align:center;
-    margin-bottom:20px;
-    color:#0b1e39;
-    font-size:26px;
-  }
-
-  /* GRID - 2 CARDS POR LINHA */
-  .grid {
-    display:grid;
-    grid-template-columns:repeat(2, 1fr);
-    gap:18px;
-  }
-
-  /* CARD BASE */
-  .card {
-    background:white;
-    padding:22px;
-    border-radius:18px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.12);
-    text-align:center;
-    font-weight:600;
-    font-size:18px;
-    color:#0b1e39;
-    text-decoration:none;
+    background:#0b1e39;
+    height:100vh;
     display:flex;
-    flex-direction:column;
     align-items:center;
     justify-content:center;
-    transition:0.2s;
+    font-family:Arial;
+    color:white;
   }
 
-  .card:hover {
-    transform:scale(1.03);
-  }
-
-  .card img {
-    width:55px;
-    height:55px;
-    margin-bottom:12px;
+  .loading {
+    font-size:20px;
+    font-weight:600;
   }
 </style>
 </head>
-
 <body>
 
-<h1>Aplicativos do Grupo</h1>
-
-<div class="grid">
-
-  <!-- CARD F360 -->
-  <a class="card" href="https://financas.f360.com.br/">
-    <img src="https://i.imgur.com/NYnJ7A8.png" alt="F360">
-    F360 Financeiro
-  </a>
-
-  <!-- CARD CALENDÁRIO -->
-  <a class="card" href="app-calendario.html">
-    <img src="https://i.imgur.com/nV6nL8j.png" alt="Agenda">
-    Calendário de Reservas
-  </a>
-
-</div>
+<div class="loading">Abrindo...</div>
 
 <script>
-// SERVICE WORKER PWA
+// 🚀 ESSENCIAL: redireciona o app PWA para o site externo
+// Login funciona, sem barra, modo standalone
+
+window.location.replace("https://financas.f360.com.br/");
+
+// REGISTRA O SERVICE WORKER DO PWA
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
