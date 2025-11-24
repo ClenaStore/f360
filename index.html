@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 
-<title>F360 App</title>
+<title>F360</title>
 
 <!-- PWA sem barra -->
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="theme-color" content="#0b1e39">
+<meta name="theme-color" content="#000000">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -15,35 +15,55 @@
 <link rel="manifest" href="manifest.json">
 
 <style>
-  body {
+  html, body {
     margin:0;
     padding:0;
-    background:#0b1e39;
+    height:100%;
+    overflow:hidden;
+    background:#000;
+  }
+
+  /* iframe fullscreen */
+  iframe {
+    position:fixed;
+    top:0;
+    left:0;
+    width:100vw;
     height:100vh;
+    border:none;
+    margin:0;
+    padding:0;
+    overflow:hidden;
+    display:block;
+  }
+
+  /* loading */
+  #loading {
+    position:fixed;
+    top:0; left:0; right:0; bottom:0;
+    background:#0b1e39;
+    color:white;
+    font-size:20px;
     display:flex;
     align-items:center;
     justify-content:center;
-    color:white;
-    font-family:Arial;
-  }
-
-  .btn {
-    background:white;
-    color:#0b1e39;
-    padding:15px 22px;
-    border-radius:10px;
-    font-size:18px;
-    font-weight:600;
-    text-decoration:none;
+    z-index:10;
   }
 </style>
 </head>
 
 <body>
 
-<a class="btn" href="https://financas.f360.com.br/">Abrir F360</a>
+<div id="loading">Carregando...</div>
+
+<!-- O SITE DIRETO -->
+<iframe 
+  src="https://financas.f360.com.br/"
+  onload="document.getElementById('loading').style.display = 'none';">
+</iframe>
 
 <script>
+// PWA
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
