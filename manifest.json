@@ -1,10 +1,10 @@
 {
-  "name": "Meu App",
-  "short_name": "MeuApp",
-  "start_url": "./",
+  "name": "F360 App",
+  "short_name": "F360",
+  "start_url": "index.html",
   "display": "standalone",
-  "background_color": "#0b1e39",
   "theme_color": "#0b1e39",
+  "background_color": "#0b1e39",
   "icons": [
     {
       "src": "icon-192.png",
