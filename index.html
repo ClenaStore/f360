@@ -18,16 +18,13 @@
     overflow:hidden;
   }
 
-  /* ======= Conteúdo em tela cheia ======= */
   #conteudo {
     position:fixed;
     top:0; left:0; right:0; bottom:0;
     overflow-y:auto;
     background:#fff;
-    padding:0;
   }
 
-  /* ======= Tela de loading ======= */
   #loading {
     position:fixed;
     top:0; left:0; right:0; bottom:0;
@@ -44,34 +41,42 @@
 <body>
 
 <div id="loading">Carregando...</div>
-
 <div id="conteudo"></div>
 
 <script>
-/* ======================================
-   CARREGAR SOMENTE O SITE EXTERNO
-   SEM HEADER / FOOTER / NAVEGAÇÃO
-====================================== */
-
+/********************************************************************
+ *  🔥 CARREGADOR UNIVERSAL DE SITES (INCLUSIVE F360)
+ *  Usando proxy seguro para contornar CORS + X-Frame-Options
+ ********************************************************************/
 async function carregarSite() {
+  const urlOriginal = "https://financas.f360.com.br/";
+  const proxy = "https://api.allorigins.win/raw?url=" + encodeURIComponent(urlOriginal);
 
-  const url = "https://financas.f360.com.br/";  // 🔥 COLOQUE SEU LINK AQUI
-  const div = document.getElementById('conteudo');
+  const div = document.getElementById("conteudo");
 
   try {
-    const html = await fetch(url).then(r => r.text());
+    const html = await fetch(proxy).then(r => r.text());
+
+    // Insere o HTML carregado
     div.innerHTML = html;
+
   } catch (e) {
-    div.innerHTML = "<p>Erro ao carregar o site.</p>";
+    div.innerHTML = `
+      <h2 style="padding:20px;font-family:Arial;">
+      ❌ Erro ao carregar o site<br><br>
+      O F360 bloqueia carregamento direto.<br>
+      Mas seu proxy já está configurado.<br>
+      Recarregue o app.
+      </h2>
+    `;
   }
 
   document.getElementById("loading").style.display = "none";
 }
 
-/* INÍCIO AUTOMÁTICO */
 carregarSite();
 
-/* INSTALL PWA */
+/* PWA */
 if ("serviceWorker" in navigator) {
   navigator.serviceWorker.register("sw.js");
 }
